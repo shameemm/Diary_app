@@ -33,24 +33,28 @@ def login(request):
         if user is not None:
             
             # return redirect('display')
-            print(dir(request.session))
+            # print(dir(request.session))
             request.session['user_id'] = user.id
             request.session['user_username'] = user.username
             user = request.session.get('session_key')
+
            
+            return redirect('home')
             
             
-            return JsonResponse(
-                {'success': True},
-                safe=False
-            )
         else:
-            messages.info(request, "Invalid Credentials")
-            # return redirect('')
-            return JsonResponse(
-                {'success': False},
-                safe=False
-            )
+            # messages.info(request, "Invalid Credentials")
+            # # return redirect('')
+            # return JsonResponse(
+            #     {'success': False},
+            #     safe=False
+            # )
+            return render(request, 'login.html')
 
     else:
         return render(request, 'login.html')
+
+def home(request):
+    user = request.session.get('user_username')
+    print(user)
+    return render(request, 'home.html',{"users":user})
