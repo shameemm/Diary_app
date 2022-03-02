@@ -58,3 +58,6 @@ def home(request):
     user = request.session.get('user_username')
     print(user)
     return render(request, 'home.html',{"users":user})
+
+def add(request):
+    return render(request, 'add.html')
