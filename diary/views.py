@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import JsonResponse
+from .models import Diary
 
 # Create your views here.
 def register(request):
@@ -56,8 +57,17 @@ def login(request):
 
 def home(request):
     user = request.session.get('user_username')
-    print(user)
-    return render(request, 'home.html',{"users":user})
+    userid = request.session.get('user_id')
+    diary=Diary.objects.filter(userid=userid)
+    return render(request, 'home.html',{"users":user},{"diary":diary})
 
 def add(request):
-    return render(request, 'add.html')
+    if request.method=='POST':
+        title = request.POST['title']
+        body = request.POST['body']
+        userid = request.session.get('user_id')
+        print(userid)
+        diary=Diary.objects.create(title=title, body=body, userid=userid)
+        return redirect('home')
+    else:
+        return render(request, 'add.html')
