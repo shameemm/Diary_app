@@ -59,7 +59,7 @@ def home(request):
     user = request.session.get('user_username')
     userid = request.session.get('user_id')
     diary=Diary.objects.filter(userid=userid)
-    return render(request, 'home.html',{"users":user},{"diary":diary})
+    return render(request, 'home.html',{"users":user, "userid":userid, "diaries":diary})
 
 def add(request):
     if request.method=='POST':

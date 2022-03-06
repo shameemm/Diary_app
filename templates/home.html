@@ -20,16 +20,17 @@
         
         
       </nav>
-      
-      <div class="card " style="width: 70%; margin-top:5%; margin-left:15%">
+      {%for diary in diaries%}
+      <div class="card " style="width: 70%; margin-top:2%; margin-left:15%">
         <div class="card-body">
-          <h5 class="card-title">}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">View More..</a>
+          <h5 class="card-title">{{diary.title}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{diary.date}}</h6>
+          
+          <a href="view{{userid}}" class="card-link">View More..</a>
           
         </div>
       </div>
+      {%endfor%}
      
 
     <!-- Optional JavaScript; choose one of the two! -->
