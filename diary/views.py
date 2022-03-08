@@ -71,3 +71,8 @@ def add(request):
         return redirect('home')
     else:
         return render(request, 'add.html')
+
+def view(request):
+    id=request.GET['id']
+    print(id)
+    return render(request, 'view.html')
