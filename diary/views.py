@@ -73,6 +73,9 @@ def add(request):
         return render(request, 'add.html')
 
 def view(request):
+    user = request.session.get('user_username')
     id=request.GET['id']
-    print(id)
-    return render(request, 'view.html')
+    view = Diary.objects.filter(id=id)
+    print(user) 
+    
+    return render(request, 'view.html',{"diary":view, "user":user})
