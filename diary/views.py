@@ -19,7 +19,7 @@ def register(request):
         print('success')
         return redirect('/')
     else:
-        return render(request, 'registration.html')
+        return render(request, 'diary/registration.html')
 
 def login(request):
     if request.method =='POST':
@@ -53,13 +53,14 @@ def login(request):
             return render(request, 'login.html')
 
     else:
-        return render(request, 'login.html')
+        return render(request, 'diary/login.html')
 
 def home(request):
     user = request.session.get('user_username')
     userid = request.session.get('user_id')
     diary=Diary.objects.filter(userid=userid)
-    return render(request, 'home.html',{"users":user, "userid":userid, "diaries":diary})
+    
+    return render(request, 'diary/home.html',{"users":user, "userid":userid, "diaries":diary})
 
 def add(request):
     if request.method=='POST':
@@ -70,7 +71,7 @@ def add(request):
         diary=Diary.objects.create(title=title, body=body, userid=userid)
         return redirect('home')
     else:
-        return render(request, 'add.html')
+        return render(request, 'diary/add.html')
 
 def view(request):
     user = request.session.get('user_username')
@@ -78,4 +79,4 @@ def view(request):
     view = Diary.objects.filter(id=id)
     print(user) 
     
-    return render(request, 'view.html',{"diary":view, "user":user})
+    return render(request, 'diary/view.html',{"diary":view, "user":user})
