@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-uo_8k!py2&k3a*(arald+hr3qza5k=%ht3a&wd-by-5&c@lbbz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dialy-diary.herokuapp.com/']
 
 
 # Application definition
@@ -78,10 +79,11 @@ WSGI_APPLICATION = 'diary_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'diaryapp',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost'
+        'NAME': 'daam3ubujotqid',
+        'USER': 'tbfzrmmrkosfnf',
+        'PASSWORD': '3a70a16b866a488dcc28cadd67870e9c1b2886a2a391b275ba5c3fd52daf9f2d',
+        'HOST': 'ec2-44-192-245-97.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
@@ -122,7 +124,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
