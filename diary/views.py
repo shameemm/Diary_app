@@ -91,7 +91,7 @@ def login(request):
 
             # )
 
-            return render(request, 'login.html')
+            return render(request, 'diary/login.html')
 
 
     else:
