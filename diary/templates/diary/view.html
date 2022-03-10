@@ -1,4 +1,6 @@
-<!doctype html>
+
+ 
+ <!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -11,17 +13,18 @@
     <title>Diary</title>
   </head>
   <body>
-    {% load diary_extras %}
+    
     <div class="" style="margin: 10%;">
       
       {%for diary in diary%}
+      
       
       <div class="card " style="width: 70%; margin-top:2%; margin-left:5%">
         <div class="card-body">
           <h5 class="card-title">{{diary.title}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{diary.date}}</h6>
           
-          <p>{{diary.body|convert_markdown}}</p>
+          <p>{{ diary.body|convert_markdown|safe}}</p>
           
         </div>
       </div>
