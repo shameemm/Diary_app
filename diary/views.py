@@ -137,8 +137,9 @@ def view(request):
     user = request.session.get('user_username')
 
     id=request.GET['id']
+    diary=Diary.objects.filter(id=id)
 
     print(user) 
     
 
-    return render(request, 'diary/view.html',{"diary":Diary.objects.filter(id=id)})
+    return render(request, 'diary/view.html',{"diary":diary})
